@@ -25,6 +25,7 @@ class _MenuPageState extends State<MenuPage> {
     super.initState();
   }
 
+  // Add Bottom NavBar menu
   @override
   Widget build(BuildContext context) {
     return Scaffold(
