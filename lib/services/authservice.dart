@@ -28,6 +28,24 @@ class AuthService {
     return auth.currentUser;
   }
 
+  // Get firebase Current user profile image
+  static Future<String> getProfileImage() async {
+    Firebase.initializeApp();
+    return auth.currentUser!.photoURL!;
+  }
+
+  // Get firebase Current user display name
+  static Future<String> getDisplayName() async {
+    Firebase.initializeApp();
+    return auth.currentUser!.displayName!;
+  }
+
+  // Get firebase Current user email
+  static Future<String> getEmail() async {
+    Firebase.initializeApp();
+    return auth.currentUser!.email!;
+  }
+
   //Sign out from application
   static Future signOut() async {
     Firebase.initializeApp();
