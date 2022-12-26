@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:food/models/catering.dart';
 import 'package:food/models/cateringdetail.dart';
 import 'package:food/models/datauserbyuid.dart';
 
