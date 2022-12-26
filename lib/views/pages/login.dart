@@ -149,7 +149,12 @@ class _LoginPageState extends State<LoginPage> {
                             await ServerService.login(
                                     nameLogin, emailLogin, uidLogin)
                                 .then((value) {
-                              UiToast.toastOk("Welcome back $nameLogin");
+                              if (value.statusCode == 200) {
+                                UiToast.toastOk("Welcome back $nameLogin");
+                              } else {
+                                UiToast.toastErr(
+                                    "Failed to add data to database");
+                              }
                             });
 
                             Navigator.pushReplacement(

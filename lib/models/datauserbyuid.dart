@@ -7,11 +7,13 @@ class DataUser extends Equatable {
 
   const DataUser({this.name, this.email, this.phone});
 
-  factory DataUser.fromJson(Map<String, dynamic> json) => DataUser(
-        name: json['name'] as String?,
-        email: json['email'] as String?,
-        phone: json['phone'] as String?,
-      );
+  factory DataUser.fromJson(Map<String, dynamic> json) {
+    return DataUser(
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      phone: json['phone'] as String?,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'name': name,
