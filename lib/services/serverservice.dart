@@ -6,7 +6,7 @@ class ServerService {
   static Future<http.Response> login(
       String name, String email, String uid) async {
     var url =
-        Uri.parse('https://${ConstAPI.baseUrl}/index.php/api/user/login}');
+        Uri.parse('https://${ConstAPI.baseUrl}/index.php/api/user/login');
     var body = jsonEncode({"name": name, "email": email, "uid": uid});
     var response = await http.post(url, body: body, headers: {
       "Content-Type": "application/json",

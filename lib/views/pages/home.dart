@@ -66,22 +66,26 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: 12),
-                Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: allCatering.isEmpty
-                      ? const Align(
-                          alignment: Alignment.center, child: Text("No Data"))
-                      : ListView.builder(
-                          itemCount: allCatering.length,
-                          itemBuilder: ((context, index) {
-                            return LazyLoadingList(
-                                loadMore: () {},
-                                child: CateringCard(allCatering[index]),
-                                index: index,
-                                hasMore: true);
-                          }),
-                        ),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    padding: EdgeInsets.only(bottom: 55),
+                    child: allCatering.isEmpty
+                        ? const Align(
+                            alignment: Alignment.center, child: Text("No Data"))
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: allCatering.length,
+                            itemBuilder: ((context, index) {
+                              return LazyLoadingList(
+                                  loadMore: () {},
+                                  child: CateringCard(allCatering[index]),
+                                  index: index,
+                                  hasMore: true);
+                            }),
+                          ),
+                  ),
                 ),
               ],
             ),
