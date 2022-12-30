@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:food/models/catering.dart';
+import 'package:food/models/cateringdetail.dart';
 import 'package:food/models/datauserbyuid.dart';
 import 'package:food/services/services.dart';
 import 'package:food/views/widgets/widgets.dart';
@@ -18,3 +19,4 @@ part 'menu.dart';
 part 'home.dart';
 part 'profile.dart';
 part 'detail.dart';
+part 'editform.dart';
