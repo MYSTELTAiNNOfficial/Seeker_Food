@@ -8,6 +8,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  List<DataUser> dataUser = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +74,32 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Text("Email is not Verified",
                         style: TextStyle(fontSize: 16)))
                 : Text("Email is Verified", style: TextStyle(fontSize: 16)),
+            SizedBox(height: 12),
+            Container(
+              width: 200,
+              padding: EdgeInsets.only(top: 12),
+              child: ElevatedButton(
+                  onPressed: () async {
+                    // go to edit form
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => EditForm(dataUser)));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red[400],
+                    elevation: 0,
+                    textStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text("Edit Data")),
+            ),
           ],
         ),
       ),

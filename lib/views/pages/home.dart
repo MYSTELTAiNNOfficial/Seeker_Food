@@ -54,18 +54,25 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.fromLTRB(16, 8, 0, 8),
                   child: Text(
                     "Hi, ${AuthService.auth.currentUser!.displayName} !",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red[600]),
                   ),
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 18),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 0, 8),
                   child: Text(
                     "List of Catering",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red[900]),
+                    textAlign: TextAlign.start,
                   ),
                 ),
-                SizedBox(height: 12),
+                SizedBox(height: 8),
                 Expanded(
                   child: Container(
                     width: double.infinity,

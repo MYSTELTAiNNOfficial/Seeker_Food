@@ -24,24 +24,29 @@ class _CateringCardState extends State<CateringCard> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailPage(),
+              builder: (context) => DetailPage(catering.id),
             ),
           );
         },
         splashColor: Colors.red[300],
         child: ListTile(
-          contentPadding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-          // leading: Container(
-          //   width: 50,
-          //   height: 50,
-          //   decoration: BoxDecoration(
-          //     shape: BoxShape.circle,
-          //     image: DecorationImage(
-          //       image: NetworkImage(catering.photo!),
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          // ),
+          contentPadding: const EdgeInsets.all(12),
+          leading: Container(
+            padding: EdgeInsets.all(3),
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                "https://seeker.api.mysteltainn.com${catering.photo!}",
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           title: Text(
             catering.name!,
             style: const TextStyle(
