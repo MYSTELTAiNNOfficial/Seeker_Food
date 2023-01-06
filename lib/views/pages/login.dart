@@ -14,6 +14,10 @@ class _LoginPageState extends State<LoginPage> {
   bool isHide = true;
   bool isLoading = false;
 
+  var nameLogin;
+  var emailLogin;
+  var uidLogin;
+
   @override
   void initState() {
     super.initState();
@@ -47,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     TextFormField(
+                      enabled: false,
                       readOnly: true,
                       keyboardType: TextInputType.emailAddress,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -66,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 12),
                     TextFormField(
+                      enabled: false,
                       readOnly: true,
                       obscureText: isHide,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -134,10 +140,23 @@ class _LoginPageState extends State<LoginPage> {
                       child: ElevatedButton(
                           onPressed: () async {
                             //sign in with google
-                            await AuthService.signInWithGoogle().then((value) {
-                              UiToast.toastOk(
-                                  "Welcome back ${value.user!.displayName}");
+                            await AuthService.signInWithGoogle();
+                            nameLogin = await AuthService.getDisplayName();
+                            emailLogin = await AuthService.getEmail();
+                            uidLogin = await AuthService.getUid();
+
+                            // Add data user to database after successful login using google account
+                            await ServerService.login(
+                                    nameLogin, emailLogin, uidLogin)
+                                .then((value) {
+                              if (value.statusCode == 200) {
+                                UiToast.toastOk("Welcome back $nameLogin");
+                              } else {
+                                UiToast.toastErr(
+                                    "Failed to add data to database");
+                              }
                             });
+
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
