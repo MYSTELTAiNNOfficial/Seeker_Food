@@ -15,10 +15,12 @@ class _CateringDetailCardState extends State<CateringDetailCard> {
     final link = WhatsAppUnilink(
       phoneNumber: cateringDetail.phone!,
     );
-    // final link = Uri.parse("whatsapp://send?phone=${cateringDetail.phone}");
-    final linkAsString = link.toString();
-    final linkAsUri = link.asUri();
+    var phoneWithZero = '0' + cateringDetail.phone.toString();
 
+    var phoneNumb = '62' + cateringDetail.phone.toString();
+    var whatsApp = 'https://wa.me/' + phoneNumb;
+
+    // final link = Uri.parse("whatsapp://send?phone=${cateringDetail.phone}");
     // Future<void> launchUrl(Uri url) async {
     //   final lin = Uri.parse("whatsapp://send?phone=${cateringDetail.phone}");
     //   if (await canLaunch(lin.toString())) {
@@ -83,22 +85,28 @@ class _CateringDetailCardState extends State<CateringDetailCard> {
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
                   ),
-                  onPressed: () {
-                    onPressed:
-                    () async {
-                      await link.asUri();
-                    };
+                  onPressed: () async {
+                    if (await canLaunchUrl(Uri.parse(whatsApp))) {
+                      await launchUrl(Uri.parse(whatsApp),
+                          mode: LaunchMode.externalApplication);
+                    }
                   },
                   child: const Icon(Icons.whatsapp_rounded,
                       color: Colors.white, size: 30, semanticLabel: 'WhatsApp'),
                 ),
                 const SizedBox(width: 5),
-                Text(
-                  cateringDetail.phone!,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
+                InkWell(
+                  child: Text(
+                    phoneWithZero,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
                   ),
+                  onTap: () async {
+                    await Clipboard.setData(ClipboardData(text: phoneWithZero));
+                    Fluttertoast.showToast(msg: "Number Copied to Clipboard");
+                  },
                 ),
               ],
             ),
