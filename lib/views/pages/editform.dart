@@ -46,7 +46,8 @@ class _EditFormState extends State<EditForm> {
               (route) => false);
           UiToast.toastOk(response['message']);
         } else {
-          UiToast.toastErr(response['message']);
+          UiToast.toastErr(
+              "Failed to update profile. You must change your username or phone number!");
         }
       }
     });
@@ -70,6 +71,7 @@ class _EditFormState extends State<EditForm> {
                 child: Column(
                   children: [
                     Container(
+                      padding: EdgeInsets.only(top: 40),
                       width: 300,
                       child: TextFormField(
                         controller: ctrlUsername,
@@ -111,7 +113,7 @@ class _EditFormState extends State<EditForm> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     Container(
                       width: 300,

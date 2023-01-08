@@ -96,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: ElevatedButton(
                   onPressed: () async {
                     // go to edit form
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => EditForm(dataUser)));

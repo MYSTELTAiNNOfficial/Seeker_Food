@@ -23,11 +23,25 @@ class _HomePageState extends State<HomePage> {
     return allCatering;
   }
 
+  List<DataUser> dataUser = [];
+
+  Future<dynamic> getDetailUser() async {
+    await ServerService.getUserProfile().then((value) {
+      setState(() {
+        dataUser = value;
+      });
+      return dataUser;
+    });
+  }
+
   @override
   void initState() {
     isLoading = true;
     getCatering().then((value) => {
           allCatering = value,
+        });
+    getDetailUser().then((value) => {
+          dataUser = value,
         });
     super.initState();
   }
@@ -53,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 0, 8),
                   child: Text(
-                    "Hi, ${AuthService.auth.currentUser!.displayName} !",
+                    "Hi, ${dataUser[0].name} !",
                     style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
