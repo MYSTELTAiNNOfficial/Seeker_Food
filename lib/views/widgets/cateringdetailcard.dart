@@ -105,7 +105,7 @@ class _CateringDetailCardState extends State<CateringDetailCard> {
                   ),
                   onTap: () async {
                     await Clipboard.setData(ClipboardData(text: phoneWithZero));
-                    Fluttertoast.showToast(msg: "Number Copied to Clipboard");
+                    UiToast.toastOk("Number Copied to Clipboard");
                   },
                 ),
               ],

@@ -19,7 +19,7 @@ class ServerService {
     var key = await AuthService.getUid();
     var url =
         Uri.parse('https://${ConstAPI.baseUrl}/index.php/api/user/profile');
-    var response = await http.post(url, headers: {
+    var response = await http.get(url, headers: {
       "Content-Type": "application/json",
       "api-key": key,
     });
