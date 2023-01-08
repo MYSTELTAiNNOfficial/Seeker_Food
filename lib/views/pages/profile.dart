@@ -10,6 +10,23 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   List<DataUser> dataUser = [];
 
+  Future<dynamic> getDetailUser() async {
+    await ServerService.getUserProfile().then((value) {
+      setState(() {
+        dataUser = value;
+      });
+      return dataUser;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDetailUser().then((value) => {
+          dataUser = value,
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,8 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Text("Username: ",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             SizedBox(height: 12),
-            Text("${AuthService.auth.currentUser!.displayName}",
-                style: TextStyle(fontSize: 16)),
+            Text("${dataUser[0].name}", style: TextStyle(fontSize: 16)),
             SizedBox(height: 12),
             Text("Email: ",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
@@ -57,13 +73,12 @@ class _ProfilePageState extends State<ProfilePage> {
             Text("Phone number: ",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             SizedBox(height: 12),
-            (AuthService.auth.currentUser!.phoneNumber == null)
+            (dataUser[0].phone == "0")
                 ? const Align(
                     alignment: Alignment.center,
                     child: Text("Phone number is not registered",
                         style: TextStyle(fontSize: 16)))
-                : Text("${AuthService.auth.currentUser!.phoneNumber}",
-                    style: TextStyle(fontSize: 16)),
+                : Text("${dataUser[0].phone}", style: TextStyle(fontSize: 16)),
             SizedBox(height: 12),
             Text("Email Status: ",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
@@ -81,10 +96,10 @@ class _ProfilePageState extends State<ProfilePage> {
               child: ElevatedButton(
                   onPressed: () async {
                     // go to edit form
-                    // Navigator.pushReplacement(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => EditForm(dataUser)));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditForm(dataUser)));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red[400],
